@@ -70,4 +70,6 @@ int main() {
     bfs();
 
     cout << arr[x][y];
+
+    return 0;
 }

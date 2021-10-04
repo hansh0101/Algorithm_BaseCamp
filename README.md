@@ -1,2 +1,4 @@
 # Algorithm_BaseCamp
-알고리즘 기초반 멘토 준비
+알고리즘 실력을 쌓아갈 베이스캠프
+
+* algorithm_basecamp_week1 ~ week4 : 알고리즘 기초반 문제

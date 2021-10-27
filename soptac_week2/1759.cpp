@@ -38,7 +38,7 @@ int main() {
     ios::sync_with_stdio(false);
 
     // l: 암호 자릿수
-    // c: 알파벳 갯
+    // c: 알파벳 갯수
     cin>>l>>c;
     for(int i=0; i<c; i++) {
         cin>>arr[i];
@@ -48,7 +48,7 @@ int main() {
     // 반복문에서 arr를 앞부터 순차적으로 탐색하기 때문에 결과는 당연히 사전식으로 정렬될 것 !!
     sort(arr, arr+c);
 
-    // backtracking 함수 돌
+    // backtracking 함수 돌림
     bt("", 0, 0, 0);
 
     return 0;

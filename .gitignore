@@ -2,6 +2,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,clion,c++
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,clion,c++
 
+*.xml
+*.iml
 ### C++ ###
 # Prerequisites
 *.d

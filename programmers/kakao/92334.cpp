@@ -42,15 +42,15 @@ vector<int> solution(vector<string> id_list, vector<string> report, int k) {
     }
 
     for (int i = 0; i < id_list.size(); i++) {
-        if(reportedLog[i] >= k) {
+        if (reportedLog[i] >= k) {
             reportedUser.push_back(id_list[i]);
         }
     }
 
-    for(int i=0; i<id_list.size(); i++) {
+    for (int i = 0; i < id_list.size(); i++) {
         int count = 0;
-        for(int j=0; j<reportedUser.size();j++) {
-            if(find(reportLog[i].begin(), reportLog[i].end(), reportedUser[j]) != reportLog[i].end()) {
+        for (int j = 0; j < reportedUser.size(); j++) {
+            if (find(reportLog[i].begin(), reportLog[i].end(), reportedUser[j]) != reportLog[i].end()) {
                 count++;
             }
         }

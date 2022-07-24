@@ -68,25 +68,25 @@ string solution(vector<string> survey, vector<int> choices) {
         }
     }
 
-    if(rt.first >= rt.second) {
+    if (rt.first >= rt.second) {
         answer += 'R';
     } else {
         answer += 'T';
     }
 
-    if(cf.first >= cf.second) {
+    if (cf.first >= cf.second) {
         answer += 'C';
     } else {
         answer += 'F';
     }
 
-    if(jm.first >= jm.second) {
+    if (jm.first >= jm.second) {
         answer += 'J';
     } else {
         answer += 'M';
     }
 
-    if(an.first >= an.second) {
+    if (an.first >= an.second) {
         answer += 'A';
     } else {
         answer += 'N';

@@ -14,44 +14,44 @@ int main() {
         string str;
         cin >> str;
 
-        stack<char> stack1;
+        int gauge1 = 0;
         int length1 = 0;
         int result1 = 0;
         for (int i = 0; i < str.length(); i++) {
             char c = str[i];
             if (c == 'C') {
                 length1++;
-                stack1.push(c);
+                gauge1++;
             } else {
-                if (stack1.empty()) {
+                if (gauge1 == 0) {
                     result1 = length1 > result1 ? length1 : result1;
                     length1 = 0;
                 } else {
                     length1++;
-                    stack1.pop();
-                    if (stack1.empty()) {
+                    gauge1--;
+                    if (gauge1 == 0) {
                         result1 = length1 > result1 ? length1 : result1;
                     }
                 }
             }
         }
 
-        stack<int> stack2;
+        int gauge2 = 0;
         int length2 = 0;
         int result2 = 0;
         for (int i = str.length() - 1; i >= 0; i--) {
             char c = str[i];
             if (c == 'T') {
                 length2++;
-                stack2.push(c);
+                gauge2++;
             } else {
-                if (stack2.empty()) {
+                if (gauge2 == 0) {
                     result2 = length2 > result2 ? length2 : result2;
                     length2 = 0;
                 } else {
                     length2++;
-                    stack2.pop();
-                    if (stack2.empty()) {
+                    gauge2--;
+                    if (gauge2 == 0) {
                         result2 = length2 > result2 ? length2 : result2;
                     }
                 }

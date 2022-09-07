@@ -178,4 +178,6 @@ Temporary Items
 .apdisk
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,clion,c++
-/CMakeLists.txt
+/CMakeLists.tx
+
+.idea

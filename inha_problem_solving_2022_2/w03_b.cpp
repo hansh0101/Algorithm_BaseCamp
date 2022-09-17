@@ -64,12 +64,9 @@ int main() {
             m += pow(10, i) * num;
         }
 
-        while (m != 0) {
-            int length = to_string(m).length() - 1;
-            ll divider = pow(10, length);
-            result += m / divider;
-            m %= divider;
-        }
+        int length = to_string(m).length() - 1;
+        ll divider = pow(10, length);
+        result += m / divider;
 
         cout << result << "\n";
     }

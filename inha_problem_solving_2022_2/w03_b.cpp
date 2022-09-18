@@ -58,15 +58,7 @@ int main() {
             }
         }
 
-        m = 0;
-        for (int i = 0; i < v.size(); i++) {
-            int num = v[v.size() - 1 - i];
-            m += pow(10, i) * num;
-        }
-
-        int length = to_string(m).length() - 1;
-        ll divider = pow(10, length);
-        result += m / divider;
+        result += v[0];
 
         cout << result << "\n";
     }

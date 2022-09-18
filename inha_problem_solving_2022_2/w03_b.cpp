@@ -1,7 +1,5 @@
 #include <iostream>
-#include <cstring>
 #include <vector>
-#include <cmath>
 
 #define ll long long
 

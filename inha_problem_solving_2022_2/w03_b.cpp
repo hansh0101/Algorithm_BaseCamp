@@ -33,25 +33,17 @@ int main() {
             }
 
             int num = v[i];
-            bool isRoundDown;
             if (num <= 4) {
                 result += num;
-                isRoundDown = true;
             } else if (num == 5) {
                 int nextNum = v[i - 1];
                 if (nextNum <= 4) {
-                    isRoundDown = true;
                 } else if (nextNum >= 5) {
-                    isRoundDown = false;
+                    v[i - 1]++;
                 }
                 result += num;
             } else if (num >= 6) {
                 result += 10 - num;
-                isRoundDown = false;
-            }
-            v[i] = 0;
-
-            if (!isRoundDown) {
                 v[i - 1]++;
             }
         }

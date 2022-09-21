@@ -19,10 +19,6 @@ int main() {
         result = 0;
         median = 201;
 
-        if (t == 2) {
-
-        }
-
         cin >> n >> d;
         for (int i = 1; i <= n; i++) {
             // 1. 중앙값을 구한다.

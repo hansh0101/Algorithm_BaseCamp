@@ -2,36 +2,42 @@
 
 using namespace std;
 
-int n, m, h;
+int N, M, H;
 int a, b;
-bool arr[31][11];
+bool arr[11][31];
 int result = 4;
 
 bool check() {
-    for (int i = 1; i <= n; i++) {
+    for (int i = 1; i <= N; i++) {
         int cur = i;
-        for (int j = 1; j <= h; j++) {
-            if (arr[j][cur]) cur++;
-            else if (arr[j][cur - 1]) cur--;
+        for (int j = 1; j <= H; j++) {
+            if (arr[cur][j]) cur++;
+            else if (arr[cur - 1][j]) cur--;
         }
-        if (cur != i) return false;
+        if (cur != i) {
+            return false;
+        }
     }
     return true;
 }
 
-void recursion(int curDepth) {
-    if (check()) {
-        result = min(result, curDepth);
+void recursion(int index, int count) {
+    if (count >= 4) {
         return;
     }
-    if (curDepth == 3) return;
+    if (check()) {
+        result = min(result, count);
+        return;
+    }
 
-    for (int i = 1; i <= h; i++) {
-        for (int j = 1; j <= n - 1; j++) {
-            if (arr[i][j] || arr[i][j - 1] || arr[i][j + 1]) continue;
-            arr[i][j] = true;
-            recursion(curDepth + 1);
-            arr[i][j] = false;
+    for (int j = 1; j <= N - 1; j++) {
+        for (int i = index; i <= H; i++) {
+            if (arr[j][i] || arr[j - 1][i] || arr[j + 1][i]) {
+                continue;
+            }
+            arr[j][i] = true;
+            recursion(i, count + 1);
+            arr[j][i] = false;
         }
     }
 }
@@ -40,13 +46,13 @@ int main() {
     cin.tie(NULL);
     ios::sync_with_stdio(false);
 
-    cin >> n >> m >> h;
-    for (int i = 0; i < m; i++) {
+    cin >> N >> M >> H;
+    for (int i = 0; i < M; i++) {
         cin >> a >> b;
-        arr[a][b] = true;
+        arr[b][a] = true;
     }
 
-    recursion(0);
-    cout << (result == 4 ? -1 : result) << "\n";
-    return 0;
+    recursion(1, 0);
+    if (result == 4) cout << "-1\n";
+    else cout << result << "\n";
 }

@@ -182,4 +182,9 @@ Temporary Items
 
 .idea
 
+# 연습용 문제풀이
+W*
+*.zip
+main.cpp
+
 coding_test/*

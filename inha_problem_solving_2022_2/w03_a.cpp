@@ -1,60 +1,67 @@
 #include <iostream>
-#include <vector>
+#include <cstring>
 
 using namespace std;
 
 int t, n, d;
-double median;
-vector<pair<int, int>> calories;
-int calorie;
-int result;
+int cnt, median;
+int calories[100001];
+int cntArr[201];
+
+int calcMedian() {
+    int medCount = 0;
+    int c = -1;
+    int med = 0;
+
+    if (d % 2 == 1) {
+        for (int i = 0; i <= 200; i++) {
+            medCount = medCount + cntArr[i];
+            if (medCount > d / 2) {
+                med = i * 2;
+                break;
+            }
+        }
+    } else {
+        for (int i = 0; i <= 200; i++) {
+            medCount = medCount + cntArr[i];
+            if (medCount >= d / 2 && c == -1) {
+                c = i;
+            }
+            if (medCount >= d / 2 + 1) {
+                med = c + i;
+                break;
+            }
+        }
+    }
+
+    return med;
+}
 
 int main() {
     cin.tie(NULL);
     ios::sync_with_stdio(false);
 
     cin >> t;
-    while (t--) {
-        calories.clear();
-        result = 0;
-        median = 201;
+    while(t--) {
+        memset(calories, 0, sizeof(calories));
+        memset(cntArr, 0, sizeof(cntArr));
+        cnt = 0, median = 0;
 
         cin >> n >> d;
-        for (int i = 1; i <= n; i++) {
-            // 1. 중앙값을 구한다.
-            if (i > d) {
-                int size = calories.size();
-                if (calories.size() % 2 == 0) {
-                    median = (double) (calories[size / 2 - 1].second + calories[size / 2].second) / 2;
-                } else {
-                    median = calories[size / 2].second;
-                }
-            }
-
-            cin >> calorie;
-            int index = calories.size();
-            for (int j = 0; j < calories.size(); j++) {
-                if (calorie < calories[j].second) {
-                    index = j;
-                    break;
-                }
-            }
-            calories.insert(calories.begin() + index, {i, calorie});
-
-            if (i > d) {
-                if (calorie >= 2 * median) {
-                    result++;
-                }
-                int target = -1;
-                for (int j = 0; j < calories.size(); j++) {
-                    if (calories[j].first == i - d) {
-                        target = j;
-                    }
-                }
-                calories.erase(calories.begin() + target);
-            }
+        for (int i = 1; i<= n; i++) {
+            cin >> calories[i];
         }
-        cout << result << "\n";
+        for (int i = 1; i<= d; i++) {
+            cntArr[calories[i]]++;
+        }
+        for (int i = d + 1; i <= n; i++) {
+            median = calcMedian();
+            if (median <= calories[i]) {
+                cnt++;
+            }
+            cntArr[calories[i-d]]--;
+            cntArr[calories[i]]++;
+        }
+        cout << cnt << "\n";
     }
-    return 0;
 }

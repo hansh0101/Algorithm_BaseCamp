@@ -1,32 +1,46 @@
 #include <iostream>
 #include <cstring>
+#include <map>
+
 using namespace std;
 
-int T;
+int t;
 string str;
+int sum[10001];
+map<int, int> dict;
+int result;
+
+void init() {
+    memset(sum, 0, sizeof(sum));
+    dict.clear();
+    result = 0;
+}
 
 int main() {
-	cin.tie(NULL);
-	ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    ios::sync_with_stdio(false);
 
-	cin >> T;
-	while (T--) {
-		cin >> str;
+    cin >> t;
+    while (t--) {
+        init();
 
-		int result = 0;
-		for (int i = 0; i < str.length() - 1; i++) {
-			int count0 = 0;
-			int count1 = 0;
-			for (int j = i; j < str.length(); j++) {
-				if (str[j] == '0') count0++;
-				else if (str[j] == '1') count1++;
+        cin >> str;
+        for (int i = 0; i < str.length(); i++) {
+            if (str[i] == '1') {
+                sum[i + 1] = sum[i] + 1;
+            } else {
+                sum[i + 1] = sum[i] - 1;
+            }
+        }
 
-				if (count0 == count1) {
-					result = max(result, j - i + 1);
-				}
-			}
-		}
-		cout << result << "\n";
-	}
-	return 0;
+        for (int i = 0; i <= str.length(); i++) {
+            if (dict.find(sum[i]) == dict.end()) {
+                dict[sum[i]] = i;
+            } else {
+                result = max(result, i - dict[sum[i]]);
+            }
+        }
+
+        cout << result << "\n";
+    }
 }

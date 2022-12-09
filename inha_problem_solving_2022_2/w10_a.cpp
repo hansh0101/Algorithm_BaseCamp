@@ -1,19 +1,16 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
+#include <algorithm>
 using namespace std;
 
 int t, n, a, p, q, x;
-vector<int> vec;
+vector<int> v;
 int result;
 
-void init();
-void input();
-void solve();
-void print();
-
-void makePermutation(int depth, int n, int r);
-bool isInRange();
+void init() {
+    v.clear();
+    result = 0;
+}
 
 int main() {
     cin.tie(NULL);
@@ -22,61 +19,28 @@ int main() {
     cin >> t;
     while (t--) {
         init();
-        input();
-        solve();
-        print();
-    }
 
-    return 0;
-}
-
-void init() {
-    vec.clear();
-    result = 0;
-}
-
-void input() {
-    cin >> n;
-    for (int i = 0; i < n; i++) {
-        cin >> a;
-        vec.push_back(a);
-    }
-    cin >> p >> q >> x;
-}
-
-void solve() {
-    makePermutation(0, n, n);
-}
-
-void print() {
-    cout << result << "\n";
-}
-
-void makePermutation(int depth, int n, int r) {
-    if (depth == r) {
-        if (isInRange()) {
-            result++;
+        cin >> n;
+        for (int i = 0; i < n; i++) {
+            cin >> a;
+            v.push_back(a);
         }
-        return;
-    }
+        cin >> p >> q >> x;
+        sort(v.begin(), v.end());
 
-    for (int i = depth; i < n; i++) {
-        swap(vec[depth], vec[i]);
-        makePermutation(depth + 1, n, r);
-        swap(vec[depth], vec[i]);
-    }
-}
+        do {
+            long long multiplier = 1;
+            long long sum = 0;
 
-bool isInRange() {
-    long long calculatedResult = 0;
-    for (int i = 0; i < n; i++) {
-        long long currentCalculatedResult = ((long long)vec[i] * (long long)pow(x, i)) % (long long)1013;
-        calculatedResult = (calculatedResult + currentCalculatedResult) % (long long)1013;
-    }
+            for (int i = 0; i < v.size(); i++) {
+                sum = (sum + v[i] * multiplier) % 1013;
+                multiplier *= x;
+            }
+            if (sum >= p && sum <= q) {
+                result++;
+            }
+        } while (next_permutation(v.begin(), v.end()));
 
-    if (calculatedResult >= p && calculatedResult <= q) {
-        return true;
-    } else {
-        return false;
+        cout << result << "\n";
     }
 }

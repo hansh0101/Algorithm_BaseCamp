@@ -5,16 +5,11 @@ using namespace std;
 
 int t;
 string x, y;
-int result;
-int dp[1001][1001];
+int result[1001][1001];
 
-void init();
-
-void input();
-
-void solve();
-
-void print();
+void init() {
+    memset(result, 0, sizeof(result));
+}
 
 int main() {
     cin.tie(NULL);
@@ -23,41 +18,24 @@ int main() {
     cin >> t;
     while (t--) {
         init();
-        input();
-        solve();
-        print();
-    }
-}
 
-void init() {
-    memset(dp, 0, sizeof(dp));
-}
-
-void input() {
-    cin >> x >> y;
-}
-
-void solve() {
-    for (int i = 0; i <= x.length(); i++) {
-        dp[i][0] = i;
-    }
-    for (int j = 0; j <= y.length(); j++) {
-        dp[0][j] = j;
-    }
-
-    for (int i = 1; i <= x.length(); i++) {
-        for (int j = 1; j <= y.length(); j++) {
-            if (x[i - 1] == y[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1];
-            } else {
-                dp[i][j] = min(min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
+        cin >> x >> y;
+        for (int r = 1; r <= x.length(); r++) {
+            result[r][0] = r;
+        }
+        for (int c = 1; c <= y.length(); c++) {
+            result[0][c] = c;
+        }
+        for (int r = 1; r <= x.length(); r++) {
+            for (int c = 1; c <= y.length(); c++) {
+                if (x[r - 1] == y[c - 1]) {
+                    result[r][c] = result[r - 1][c - 1];
+                } else {
+                    result[r][c] = min(result[r - 1][c - 1], min(result[r][c - 1], result[r - 1][c])) + 1;
+                }
             }
         }
+
+        cout << result[x.length()][y.length()] << "\n";
     }
-
-    result = dp[x.length()][y.length()];
-}
-
-void print() {
-    cout << result << "\n";
 }

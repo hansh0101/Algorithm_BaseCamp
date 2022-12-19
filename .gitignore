@@ -347,3 +347,4 @@ replay_pid*
 # End of https://www.toptal.com/developers/gitignore/api/intellij,java,kotlin
 
 Main.kt
+kotlin_ps/src/main/kotlin/coding_test/*

@@ -348,3 +348,7 @@ replay_pid*
 
 Main.kt
 kotlin_ps/src/main/kotlin/coding_test/*
+
+# VScode
+
+.vscode/*

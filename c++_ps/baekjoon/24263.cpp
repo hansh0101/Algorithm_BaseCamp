@@ -9,6 +9,6 @@ int main() {
     int n;
     cin >> n;
 
-    cout << "1\n0\n";
+    cout << n << "\n1\n";
     return 0;
 }

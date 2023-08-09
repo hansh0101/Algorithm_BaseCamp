@@ -24,7 +24,7 @@ int main() {
     }
 
     // 3. 이등변삼각형
-    if (arr[0] == arr[1] || arr[1] == arr[2] || arr[2] == arr[1]) {
+    if (arr[0] == arr[1] || arr[1] == arr[2] || arr[2] == arr[0]) {
         cout << "Isosceles\n";
         return 0;
     }

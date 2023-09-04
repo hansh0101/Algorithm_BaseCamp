@@ -22,10 +22,6 @@ vector<PathInfo> paths[10001];
 int dp[10001];
 int result;
 
-bool compare(PathInfo pi1, PathInfo pi2) {
-    return pi1.distance < pi2.distance;
-}
-
 void getInput() {
     cin >> n >> d;
     for (int i = 0; i < n; i++) {

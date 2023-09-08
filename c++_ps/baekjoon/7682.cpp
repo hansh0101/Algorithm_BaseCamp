@@ -95,7 +95,7 @@ void solve() {
         return;
     }
 
-    // 2. X가 더 많이 뒀는데 O가 이긴 경우 체크해서 invalid 걸러내기
+    // 2. X가 더 많이 뒀는데 O가 이긴 경우를 체크해서 invalid 걸러내기
     if (xCount == oCount + 1) {
         if (isWin('O')) {
             result = "invalid";
@@ -103,7 +103,15 @@ void solve() {
         }
     }
 
-    // 3. 게임이 최종 상태인지 확인하기
+    // 3. X와 O가 같은 횟수를 뒀는데 X가 이미 승리조건을 달성한 경우를 체크해서 invalid 걸러내기
+    if (xCount == oCount) {
+        if (isWin('X')) {
+            result = "invalid";
+            return;
+        }
+    }
+
+    // 4. 게임이 최종 상태인지 확인하기
     if (isFinished()) {
         result = "valid";
     } else {

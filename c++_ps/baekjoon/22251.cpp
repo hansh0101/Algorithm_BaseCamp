@@ -6,7 +6,6 @@ using namespace std;
 
 int n, k, p, x;
 bool isOn[10][7];
-vector<int> changables[10];
 vector<int> xVec;
 vector<int> iVec;
 int result;

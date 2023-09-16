@@ -361,3 +361,5 @@ kotlin_ps/src/main/kotlin/coding_test/*
 # VScode
 
 .vscode/*
+kotlin_ps/src/main/kotlin/Test.java
+c++_ps/baekjoon/tempCodeRunnerFile.cpp

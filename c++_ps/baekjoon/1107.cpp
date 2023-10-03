@@ -1,24 +1,25 @@
 #include <iostream>
-#include <cstring>
 
 using namespace std;
 
-int n, m;
+int n, m, broken;
 bool isBroken[10];
-int result = 1e9;
+int result;
 
-bool checkChannel(int ch) {
-    bool res = true;
+bool check(int ch) {
+    if (ch == 0 && isBroken[0]) {
+        return false;
+    }
 
     while (ch != 0) {
         if (isBroken[ch % 10]) {
-            res = false;
-            break;
+            return false;
         }
+        
         ch /= 10;
     }
 
-    return res;
+    return true;
 }
 
 int main() {
@@ -27,36 +28,19 @@ int main() {
 
     cin >> n >> m;
     for (int i = 0; i < m; i++) {
-        int num;
-        cin >> num;
-        isBroken[num] = true;
+        cin >> broken;
+        isBroken[broken] = true;
     }
 
-    // 1. n보다 큰 채널로 이동 후 - 눌러서 채널 낮추기
-    int ch = n;
-    while (!checkChannel(ch)) {
-        if (ch > 500000) {
-            break;
+    result = abs(n - 100);
+
+    for (int i = 0; i <= 999900; i++) {
+        if (check(i)) {
+            int cnt = abs(n - i) + to_string(i).length();
+            result = min(result, cnt);
         }
-        ch++;
-    }
-    result = min((unsigned long)result, ch - n + to_string(ch).length());
-    
-
-    // 2. n보다 작은 채널로 이동 후 + 눌러서 채널 높이기
-    ch = n;
-    while (!checkChannel(ch)) {
-        if (ch == 100 || ch == 0) {
-            break;
-        }
-        ch--;
-    }
-
-    if (ch == 100) {
-        result = min(result, n - ch);
-    } else {
-        result = min((unsigned long)result, n - ch + to_string(ch).length());
     }
 
     cout << result << "\n";
+    return 0;
 }
